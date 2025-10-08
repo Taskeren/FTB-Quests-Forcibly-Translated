@@ -110,10 +110,20 @@ obfuscation {
     createRemappingConfiguration(configurations.localRuntime)
 }
 
+repositories {
+    maven {
+        name = "CurseMaven"
+        url = "https://cursemaven.com"
+        mavenContent {
+            includeGroup("curse.maven")
+        }
+    }
+}
+
 dependencies {
     // If you wish to declare dependencies against mods, make sure to use the 'mod*' configurations so that they're remapped.
 	// See https://github.com/neoforged/ModDevGradle/blob/main/LEGACY.md#remapping-mod-dependencies for more information.
-	
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // modCompileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
@@ -132,13 +142,22 @@ dependencies {
     // Example project dependency using a sister or child project:
     // modImplementation project(":myproject")
 
+    compileOnly("org.jetbrains:annotations:26.0.2-1")
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0"))
+
+    modImplementation("curse.maven:ftb-library-forge-404465:6807424")
+    modImplementation("curse.maven:ftb-quests-forge-289412:6829212")
+
+    modRuntimeOnly("curse.maven:ftb-teams-forge-404468:6130786")
+    modRuntimeOnly("curse.maven:architectury-api-419699:5137938")
+
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
 
-// Uncomment the lines below if you wish to configure mixin. The mixin file should be named modid.mixins.json.
-/*
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
     config "${mod_id}.mixins.json"
@@ -153,7 +172,6 @@ jar {
             "MixinConfigs": "${mod_id}.mixins.json"
     ])
 }
-*/
 
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.

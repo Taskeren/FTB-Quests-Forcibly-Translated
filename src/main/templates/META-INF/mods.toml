@@ -4,7 +4,7 @@ modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/"
-#clientSideOnly=true #optional - defaults to false if absent
+clientSideOnly=true
 [[mods]]
 modId = "${mod_id}"
 version = "${mod_version}"
