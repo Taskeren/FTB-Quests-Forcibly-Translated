@@ -61,7 +61,7 @@ public class ForciblyTranslated {
 
         String chapterName = chapter.getFilename();
         int questOrdinal = chapter.getQuests().indexOf(quest) + 1;
-        return "ftbquests.chapter.%s.quest%s.title".formatted(chapterName, questOrdinal);
+        return ForciblyTranslatedConfig.patternQuestTitle.formatted(chapterName, questOrdinal);
     }
 
     @ApiStatus.Internal
@@ -73,7 +73,7 @@ public class ForciblyTranslated {
 
         String chapterName = chapter.getFilename();
         int questOrdinal = chapter.getQuests().indexOf(quest) + 1;
-        return "ftbquests.chapter.%s.quest%s.subtitle".formatted(chapterName, questOrdinal);
+        return ForciblyTranslatedConfig.patternQuestSubtitle.formatted(chapterName, questOrdinal);
     }
 
     @ApiStatus.Internal
@@ -86,17 +86,17 @@ public class ForciblyTranslated {
         String chapterName = chapter.getFilename();
         int questOrdinal = chapter.getQuests().indexOf(quest) + 1;
 
-        return "ftbquests.chapter.%s.quest%s.description%s".formatted(chapterName, questOrdinal, descIndex + 1);
+        return ForciblyTranslatedConfig.patternQuestDesc.formatted(chapterName, questOrdinal, descIndex + 1);
     }
 
     @ApiStatus.Internal
     public static String keyForChapterTitle(Chapter chapter) {
-        return "ftbquests.chapter.%s.title".formatted(chapter.getFilename());
+        return ForciblyTranslatedConfig.patternChapterTitle.formatted(chapter.getFilename());
     }
 
     @ApiStatus.Internal
     public static String keyForChapterGroupTitle(ChapterGroup chapterGroup) {
-        return "ftbquests.chapter_groups_%s.title".formatted(chapterGroup.id);
+        return ForciblyTranslatedConfig.patternChapterGroupTitle.formatted(chapterGroup.id);
     }
 
     @Mod.EventBusSubscriber
